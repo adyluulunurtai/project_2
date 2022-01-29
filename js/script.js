@@ -17,10 +17,22 @@ window.addEventListener("DOMContentLoaded", ()=>{
         content[i].style.display="block";
         tabs[i].classList.add("tabheader__item_active");
     }
-  
+
+    wrapperTabs.addEventListener('click', (event)=>{
+      
+        if(event.target && event.target.classList.contains("tabheader__item")){
+            tabs.forEach((item,i)=>{
+                if(event.target == item){
+                    contentHidden();
+                    contentShow(i);
+                }
+            })
+        }
+
+    })
+    
+
  
-    contentHidden();
-    contentShow(1);
  
 
 })
