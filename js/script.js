@@ -1,4 +1,5 @@
 window.addEventListener("DOMContentLoaded", ()=>{
+   //TABS
     const wrapperTabs = document.querySelector(".tabheader__items");
     const tabs = document.querySelectorAll(".tabheader__item");
     const content = document.querySelectorAll(".tabcontent");
@@ -35,12 +36,58 @@ window.addEventListener("DOMContentLoaded", ()=>{
              
             });
         }
-      
-
     });
 
+//TIMER
 
- 
- 
+let deadline = '2022-02-09';
 
+function getTimeRemainig(end) {
+    let t = Date.parse(end) - Date.parse(new Date());
+
+    let days = Math.floor(t/(1000*60*60*24));
+    let hours = Math.floor(t/(1000*60*60)%24);
+    let minutes = Math.floor(t/(1000*60)%60);
+    let seconds = Math.floor((t/1000)%60);
+    
+    return{
+        'total' : t,
+        'days' : days,
+        'hours' : hours,
+        'minutes' : minutes,
+        'seconds' : seconds
+    };
+}
+
+function getZero(num){
+    if(num>=0 && num<10){
+        return `0${num}`;
+    }
+    else{
+        return num;
+    }
+}
+ 
+function setClock(end){
+    let timer = document.querySelector(".timer");
+    let days = timer.querySelector("#days");
+    let hours = timer.querySelector("#hours");
+    let minutes = timer.querySelector("#minutes");
+    let seconds = timer.querySelector("#seconds");
+    
+    
+    function clock (){
+        let t = getTimeRemainig(end);
+        days.innerHTML = getZero(t.days);
+        hours.innerHTML = getZero(t.hours);
+        minutes.innerHTML = getZero(t.minutes);
+        seconds.innerHTML = getZero(t.seconds);
+       
+    }
+    let timeInterval = setInterval(clock, 1000);
+    clock();
+
+}
+ 
+setClock(deadline);
 });
