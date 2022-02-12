@@ -90,4 +90,20 @@ function setClock(end){
 }
  
 setClock(deadline);
+
+//modal window
+
+const modalTrigger = document.querySelectorAll("[data-modal]");
+const modalWindow = document.querySelector(".modal");
+const modalClose = document.querySelector(".modal__close");
+
+modalTrigger.forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+        modalWindow.style.display = "block";
+    });
+});
+
+modalClose.addEventListener("click", ()=>{
+    modalWindow.style.display="none";
+});
 });
