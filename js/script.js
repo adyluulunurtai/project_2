@@ -99,11 +99,25 @@ const modalClose = document.querySelector(".modal__close");
 
 modalTrigger.forEach(btn=>{
     btn.addEventListener("click", ()=>{
-        modalWindow.style.display = "block";
+        modalWindow.classList.add("show");
+        modalWindow.classList.remove("hide")
+        document.body.style.overflow = "hidden";
     });
 });
+function closeModal(){
+    modalWindow.classList.add("hide");
+    modalWindow.classList.remove("show");
+    document.body.style.overflow = "";
+}
 
-modalClose.addEventListener("click", ()=>{
-    modalWindow.style.display="none";
+modalClose.addEventListener("click", closeModal);
+
+
+modalWindow.addEventListener("click", (e) => {
+    if(e.target === modalWindow){
+        closeModal();
+    }
 });
+
+
 });
